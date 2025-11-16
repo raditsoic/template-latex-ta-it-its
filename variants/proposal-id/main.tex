@@ -1,3 +1,7 @@
+\makeatletter
+\def\input@path{{../../core/}}
+\makeatother
+
 % Judul dokumen
 \title{Buku Tugas Akhir ITS}
 \author{Musk, Elon Reeve}
@@ -35,6 +39,10 @@
 \usepackage{tabularx}
 \usepackage{wrapfig}
 \usepackage{float}
+\usepackage{algorithmic}
+\usepackage{amsmath} % For enhanced math mode including \text command
+\usepackage{amssymb} % For additional math symbols
+\usepackage{mathtools} % For additional math tools
 
 % Definisi untuk "Hati ini sengaja dikosongkan"
 \patchcmd{\cleardoublepage}{\hbox{}}{
@@ -84,9 +92,9 @@
   \or December% 12
   \fi}
 
-% Pengaturan format judul bab
+% Pengaturan format judul chapter
 \usepackage{titlesec}
-\titleformat{\chapter}[display]{\bfseries\Large}{BAB \centering\Roman{chapter}}{0ex}{\vspace{0ex}\centering}
+\titleformat{\chapter}[hang]{\bfseries\Large\centering}{BAB \Roman{chapter}}{1ex}{\centering}
 \titleformat{\section}{\bfseries\large}{\MakeUppercase{\thesection}}{1ex}{\vspace{1ex}}
 \titleformat{\subsection}{\bfseries\large}{\MakeUppercase{\thesubsection}}{1ex}{}
 \titleformat{\subsubsection}{\bfseries\large}{\MakeUppercase{\thesubsubsection}}{1ex}{}
@@ -104,6 +112,7 @@
 
 % Pengaturan format potongan kode
 \usepackage{listings}
+\usepackage[T1]{fontenc} % Fix for quote character encoding
 \definecolor{comment}{RGB}{0,128,0}
 \definecolor{string}{RGB}{255,0,0}
 \definecolor{keyword}{RGB}{0,0,255}
@@ -121,29 +130,16 @@
   showstringspaces=false,
   upquote=true,
   tabsize=2,
+  literate={"}{{\textquotedbl}}1,
 }
 \lstset{style=codestyle}
 
 % Isi keseluruhan dokumen
 \begin{document}
 
-% Sampul luar Bahasa Indonesia
-\newcommand\covercontents{sampul/konten-id.tex}
-\input{sampul/sampul-luar.tex}
-
-% Atur ulang penomoran halaman
-\setcounter{page}{1}
-
-% Sampul dalam Bahasa Indonesia
-\renewcommand\covercontents{sampul/konten-id.tex}
-\input{sampul/sampul-luar-tipis.tex}
-\clearpage
-\cleardoublepage
-
 % Sampul dalam Bahasa Inggris
-\renewcommand\covercontents{sampul/konten-en.tex}
+\newcommand\covercontents{sampul/konten-id.tex}
 \input{sampul/sampul-luar-tipis.tex}
-\cleardoublepage
 
 % Label tabel dan gambar dalam bahasa indonesia
 \renewcommand{\figurename}{Gambar}
@@ -156,71 +152,66 @@
 \setlength{\parskip}{1ex}
 
 % Lembar pengesahan
-\input{lainnya/lembar-pengesahan.tex}
-\cleardoublepage
-\input{lainnya/lembar-pengesahan-en.tex}
+\input{lainnya/lembar-pengesahan-proposal-en.tex}
 \cleardoublepage
 
-% Pernyataan keaslian
+% Halaman Pernyataan Orisinalitas
 \input{lainnya/pernyataan-keaslian.tex}
-\cleardoublepage
+\clearpage
+
 \input{lainnya/pernyataan-keaslian-en.tex}
-\cleardoublepage
+\clearpage
 
 % Nomor halaman pembuka dimulai dari sini
 \pagenumbering{roman}
 
 % Abstrak Bahasa Indonesia
 \input{abstrak/abstrak-id.tex}
-\cleardoublepage
+\clearpage
 
 % Abstrak Bahasa Inggris
 \input{abstrak/abstrak-en.tex}
-\cleardoublepage
-
-% Kata pengantar
-\input{lainnya/kata-pengantar.tex}
-\cleardoublepage
+\clearpage
 
 % Daftar isi
 \renewcommand*\contentsname{DAFTAR ISI}
 \addcontentsline{toc}{chapter}{\contentsname}
 \tableofcontents
-\cleardoublepage
+\clearpage
 
 % Daftar gambar
 \renewcommand*\listfigurename{DAFTAR GAMBAR}
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
-\cleardoublepage
+\clearpage
 
 % Daftar tabel
 \renewcommand*\listtablename{DAFTAR TABEL}
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
-\cleardoublepage
+\clearpage
 
 % Nomor halaman isi dimulai dari sini
 \pagenumbering{arabic}
 
 % Bab 1 pendahuluan
-\input{bab/1-pendahuluan.tex}
+\input{chapter/1-pendahuluan.tex}
 \cleardoublepage
 
 % Bab 2 tinjauan pustaka
-\input{bab/2-tinjauan-pustaka.tex}
+\input{chapter/2-tinjauan-pustaka.tex}
 \cleardoublepage
 
 % Bab 3 desain dan implementasi
-\input{bab/3-desain-implementasi.tex}
+\input{chapter/3-desain-implementasi.tex}
 \cleardoublepage
 
 % Bab 4 pengujian dan analisis
-\input{bab/4-pengujian-analisis.tex}
+\input{chapter/4-pengujian-analisis.tex}
 \cleardoublepage
 
 % Bab 5 penutup
-\input{bab/5-penutup.tex}
+\input{chapter/5-penutup.tex}
 \cleardoublepage
 
 \chapter*{DAFTAR PUSTAKA}

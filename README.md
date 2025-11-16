@@ -1,24 +1,36 @@
-# Template LaTeX Buku Tugas Akhir ITS
+# Template LaTeX Tugas Akhir – Departemen Teknologi Informasi ITS
 
-[![latest version](https://img.shields.io/github/v/release/b201lab/template-buku-ta-its)](https://github.com/b201lab/template-buku-ta-its/releases/)
-[![commits since latest version](https://img.shields.io/github/commits-since/b201lab/template-buku-ta-its/latest)](https://github.com/b201lab/template-buku-ta-its/commits/master)
-[![repo size](https://img.shields.io/github/repo-size/b201lab/template-buku-ta-its)](https://github.com/b201lab/template-buku-ta-its)
-[![license](https://img.shields.io/github/license/b201lab/template-buku-ta-its)](./LICENSE)
-[![build status](https://img.shields.io/github/actions/workflow/status/b201lab/template-buku-ta-its/ci.yaml?branch=main)](https://github.com/b201lab/template-buku-ta-its/actions/workflows/ci.yaml)
+Template ini merupakan adaptasi dari template LaTeX resmi tugas akhir ITS yang dikembangkan oleh **B201 Telematics Laboratory** (repositori asli: `b201lab/template-buku-ta-its`). Versi ini telah disesuaikan untuk kebutuhan Departemen Teknologi Informasi ITS, dengan penyesuaian struktur, berkas, serta penambahan beberapa varian template (proposal & laporan akhir, Bahasa Indonesia & Bahasa Inggris).
 
-Repositori ini berisi template [LaTeX](https://www.latex-project.org/) dari buku tugas akhir yang disesuaikan dengan format yang diberlakukan oleh [Institut Teknologi Sepuluh Nopember](https://www.its.ac.id/) (ITS). Template yang ada pada repositori ini bersifat universal dan bisa digunakan oleh setiap departemen yang ada di ITS karena sudah mengikuti aturan resmi yang berdasarkan pada [SK Rektor ITS No. 280 Tahun 2022](https://www.its.ac.id/pendidikan/wp-content/uploads/sites/112/2022/03/280-SK-Rektor-ttg-Pedoman-Penyusunan-Laporan-Tugas-Akhir-Sarjana-Sarjana-Terapan.pdf) tentang pedoman penyusunan laporan tugas/proyek akhir program sarjana dan sarjana terapan.
+## Struktur Template
 
-> Contoh file PDF dari template ini bisa dilihat di [sini](https://b201lab.github.io/template-buku-ta-its/buku-ta.pdf).
+Repositori ini menggunakan pendekatan core + variants, sehingga bagian yang sama untuk semua template hanya ada satu kali (dalam folder `core/`), sementara file yang berbeda untuk tiap versi berada di `variants/`.
 
-## Fitur
+```bash
+/
+├── LICENSE
+├── README.md
+├── core/                 # Komponen bagian
+│   ├── abstrak/
+│   ├── bab/
+│   ├── gambar/
+│   ├── lainnya/
+│   ├── program/
+│   ├── pustaka/
+│   └── sampul/
+└── variants/             # Varian template
+    ├── proposal-id/
+    ├── proposal-en/
+    ├── final-id/
+    └── final-en/
+```
 
-- Format ukuran halaman, margin, dan font yang disesuaikan dengan aturan yang berlaku di ITS.
-- Disertai bagian-bagian yang diperlukan seperti pengesahan, latar belakang, tinjauan pustaka, dsb.
-- Pembuatan daftar pustaka secara otomatis.
-- Penomoran gambar dan referensi secara otomatis.
-- Penambahan gambar dengan format JPEG, PNG, maupun format lain pada dokumen.
-- Pembuatan daftar, persamaan ilmiah, dan tabel pada dokumen.
-- Kompilasi dokumen secara otomatis menggunakan [GitHub Actions](https://github.com/features/actions).
+**Penjelasan Singkat Folder**
+
+- `core/` — Isi template utama (struktur bab, gaya, sampul, variabel, dll.).
+- `variants/` — Berisi override dan main.tex versi khusus, misalnya:
+- `proposal-id` → Proposal Bahasa Indonesia
+- `final-en` → Laporan akhir Bahasa Inggris
 
 ## Cara Menggunakan Template
 
@@ -39,13 +51,7 @@ Selain file `main.tex`, ada juga beberapa bagian lain dari template ini yang bis
 
 > Penjelasan lebih lanjut mengenai penggunaan template ini akan dijelaskan dengan comment yang tersedia pada setiap file yang ada.
 
-## Contoh Penggunaan Template
-
-Berikut adalah daftar repositori lain yang menggunakan template yang berasal dari repositori ini:
-
-- [threeal/buku-ta-simulasi-robot](https://github.com/threeal/buku-ta-simulasi-robot).
-- [chillytaka/last_boss](https://github.com/chillytaka/last_boss).
 
 ## Lisensi
 
-Kode sumber yang ada pada repositori ini dilisensikan di bawah [lisensi MIT](./LICENSE).
+Kode sumber yang ada pada repositori ini dilisensikan di bawah [lisensi MIT](./LICENSE) dengan kredit penuh kepada B201 Telematics Laboratory untuk template dasar.
