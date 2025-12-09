@@ -2,56 +2,337 @@
 
 Template ini merupakan adaptasi dari template LaTeX resmi tugas akhir ITS yang dikembangkan oleh **B201 Telematics Laboratory** (repositori asli: `b201lab/template-buku-ta-its`). Versi ini telah disesuaikan untuk kebutuhan Departemen Teknologi Informasi ITS, dengan penyesuaian struktur, berkas, serta penambahan beberapa varian template (proposal & laporan akhir, Bahasa Indonesia & Bahasa Inggris).
 
+---
+
+## Daftar Isi
+
+- [Struktur Template](#struktur-template)
+- [Instalasi](#instalasi)
+- [Cara Menggunakan Template](#cara-menggunakan-template)
+- [Kompilasi Dokumen](#kompilasi-dokumen)
+- [Varian Template](#varian-template)
+- [Troubleshooting](#troubleshooting)
+- [Kontribusi](#kontribusi)
+- [Lisensi](#lisensi)
+
+---
+
 ## Struktur Template
 
-Repositori ini menggunakan pendekatan core + variants, sehingga bagian yang sama untuk semua template hanya ada satu kali (dalam folder `core/`), sementara file yang berbeda untuk tiap versi berada di `variants/`.
+Repositori ini menggunakan pendekatan **core + variants**, sehingga bagian yang sama untuk semua template hanya ada satu kali (dalam folder `core/`), sementara file yang berbeda untuk tiap versi berada di `variants/`.
 
 ```bash
 /
 ├── LICENSE
 ├── README.md
-├── core/                 # Komponen bagian
-│   ├── abstrak/
-│   ├── bab/
-│   ├── gambar/
-│   ├── lainnya/
-│   ├── program/
-│   ├── pustaka/
-│   └── sampul/
-└── variants/             # Varian template
-    ├── proposal-id/
-    ├── proposal-en/
-    ├── final-id/
-    └── final-en/
+├── core/                 # Komponen inti yang dibagikan ke semua varian
+│   ├── abstrak/          # Abstrak Bahasa Indonesia dan Inggris
+│   ├── chapter/          # Bab-bab tugas akhir
+│   ├── gambar/           # Direktori untuk gambar/ilustrasi
+│   ├── lainnya/          # Halaman tambahan (pengesahan, kata pengantar, dll.)
+│   ├── program/          # Kode program yang akan disisipkan
+│   ├── pustaka/          # Daftar pustaka dan variabel konfigurasi
+│   └── sampul/           # Template sampul dalam dan luar
+└── variants/             # Varian template untuk berbagai kebutuhan
+    ├── proposal-id/      # Proposal Tugas Akhir (Bahasa Indonesia)
+    ├── proposal-en/      # Proposal Tugas Akhir (Bahasa Inggris)
+    ├── ta-id/            # Laporan Akhir (Bahasa Indonesia)
+    └── ta-en/            # Laporan Akhir (Bahasa Inggris)
 ```
 
-**Penjelasan Singkat Folder**
+### Penjelasan Folder `core/`
 
-- `core/` — Isi template utama (struktur bab, gaya, sampul, variabel, dll.).
-- `variants/` — Berisi override dan main.tex versi khusus, misalnya:
-- `proposal-id` → Proposal Bahasa Indonesia
-- `final-en` → Laporan akhir Bahasa Inggris
+| Folder | Deskripsi |
+|--------|-----------|
+| **`abstrak/`** | Berisi file `*.tex` untuk abstrak dalam Bahasa Indonesia (`abstrak-id.tex`) dan Bahasa Inggris (`abstrak-en.tex`) |
+| **`chapter/`** | Berisi file `*.tex` dari setiap bab (1-pendahuluan.tex, 2-tinjauan-pustaka.tex, dll.) |
+| **`gambar/`** | Direktori untuk menyimpan file gambar (`*.jpg`, `*.png`, `*.pdf`, dll.) yang akan digunakan dalam dokumen |
+| **`lainnya/`** | Halaman tambahan seperti lembar pengesahan, kata pengantar, pernyataan keaslian, biografi penulis |
+| **`program/`** | File kode program yang akan disisipkan ke dalam dokumen menggunakan package listings |
+| **`pustaka/`** | Berisi `pustaka.bib` (daftar referensi) dan `variables.tex` (konfigurasi metadata) |
+| **`sampul/`** | Template sampul luar dan dalam untuk buku tugas akhir |
+
+### Penjelasan Folder `variants/`
+
+Setiap varian memiliki file `main.tex` sendiri yang mengatur struktur dokumen sesuai kebutuhan:
+
+- **`proposal-id/`** — Proposal Tugas Akhir dalam Bahasa Indonesia
+- **`proposal-en/`** — Proposal Tugas Akhir dalam Bahasa Inggris  
+- **`ta-id/`** — Buku Tugas Akhir (Laporan Akhir) dalam Bahasa Indonesia
+- **`ta-en/`** — Buku Tugas Akhir (Laporan Akhir) dalam Bahasa Inggris
+
+---
+
+## Instalasi
+
+Sebelum menggunakan template ini, Anda perlu menginstal distribusi LaTeX yang sesuai dengan sistem operasi Anda.
+
+### Arch Linux
+
+```bash
+sudo pacman -S texlive-basic texlive-bin texlive-latex \
+  texlive-latexrecommended texlive-fontsrecommended \
+  texlive-xetex texlive-luatex texlive-pictures \
+  texlive-publishers texlive-science texlive-binextra \
+  texlive-latexextra
+```
+
+### Ubuntu / Debian
+
+```bash
+sudo apt update
+sudo apt install \
+  texlive \
+  texlive-base \
+  texlive-latex-base \
+  texlive-latex-recommended \
+  texlive-fonts-recommended \
+  texlive-xetex \
+  texlive-luatex \
+  texlive-pictures \
+  texlive-publishers \
+  texlive-science \
+  texlive-latex-extra \
+  texlive-extra-utils \
+  texlive-bibtex-extra \
+  biber
+```
 
 ## Cara Menggunakan Template
 
-Bagian utama dokumen terletak pada file [`main.tex`](./main.tex) yang digunakan untuk mengatur package LaTeX yang digunakan serta file lain yang akan diinputkan pada dokumen.
-Setelah kompilasi dilakukan, hasilnya akan ada beberapa file `main` dengan format yang berbeda.
-Yang terutama adalah file `main.pdf` yang merupakan hasil akhir dari proses kompilasi dokumen.
+### 1. Pilih Varian Template
 
-Selain file `main.tex`, ada juga beberapa bagian lain dari template ini yang bisa diubah, seperti:
+Pilih varian yang sesuai dengan kebutuhan Anda:
 
-- **[`abstrak`](./abstrak)**, berisi file `*.tex` untuk abstrak dalam Bahasa Indonesia dan Bahasa Inggris.
-- **[`bab`](./bab)**, berisi file `*.tex` dari setiap bab yang akan dimasukkan pada buku tugas akhir.
-- **[`gambar`](./gambar)**, berisi file `*.jpg`, `*.png`, maupun format gambar lain yang akan dimasukkan pada buku tugas akhir.
-- **[`lainnya`](./lainnya)**, berisi file `*.tex` dari halaman lain seperti lembar pengesahan, kata pengantar, biografi penulis, dsb. yang akan dimasukkan pada buku tugas akhir.
-- **[`program`](./program)**, berisi file kode program yang akan dimasukkan pada dokumen.
-- **[`pustaka/pustaka.bib`](./pustaka/pustaka.bib)**, berisi daftar pustaka yang akan dimasukkan pada dokumen.
-- **[`pustaka/variables.tex`](./pustaka/variables.tex)**, berisi variabel-variabel yang memuat nama, nrp, dan hal-hal lain yang dapat disesuaikan dengan kebutuhan penulis.
-- **[`sampul`](./sampul)**, berisi file `*.tex` dari sampul luar dan dalam untuk buku tugas akhir.
+- **`variants/proposal-id/`** — Untuk proposal tugas akhir dalam Bahasa Indonesia
+- **`variants/proposal-en/`** — Untuk proposal tugas akhir dalam Bahasa Inggris
+- **`variants/ta-id/`** — Untuk laporan akhir dalam Bahasa Indonesia
+- **`variants/ta-en/`** — Untuk laporan akhir dalam Bahasa Inggris
 
-> Penjelasan lebih lanjut mengenai penggunaan template ini akan dijelaskan dengan comment yang tersedia pada setiap file yang ada.
+### 2. Konfigurasi Metadata Dokumen
+
+Edit file **`core/pustaka/variables.tex`** untuk mengatur informasi pribadi dan dokumen:
+
+```tex
+% Nama dan identitas
+\newcommand{\name}{Nama Lengkap Anda}
+\newcommand{\nrp}{5025 21 XXXX}
+\newcommand{\advisor}{Nama Dosen Pembimbing, S.T., M.T}
+\newcommand{\coadvisor}{Nama Dosen Co-Pembimbing, S.T., M.T}
+
+% Judul
+\newcommand{\tatitle}{Judul Tugas Akhir Bahasa Indonesia}
+\newcommand{\engtatitle}{Final Project Title in English}
+
+% Kata kunci
+\newcommand{\keywords}{kata kunci, penelitian, topik}
+
+% Dan konfigurasi lainnya...
+```
+
+### 3. Isi Konten Dokumen
+
+#### a. **Abstrak**
+Edit file di `core/abstrak/`:
+- `abstrak-id.tex` — Abstrak dalam Bahasa Indonesia
+- `abstrak-en.tex` — Abstrak dalam Bahasa Inggris
+
+#### b. **Bab-Bab**
+Edit file di `core/chapter/` sesuai struktur buku:
+- `1-pendahuluan.tex` — Latar belakang, rumusan masalah, tujuan, manfaat
+- `2-tinjauan-pustaka.tex` — Teori dan penelitian terdahulu
+- `3-desain-implementasi.tex` — Metodologi dan implementasi
+- `4-pengujian-analisis.tex` — Hasil pengujian dan analisis
+- `5-penutup.tex` — Kesimpulan dan saran
+
+#### c. **Gambar**
+Simpan file gambar di `core/gambar/` dan gunakan dalam dokumen:
+
+```tex
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/nama-file.png}
+  \caption{Deskripsi gambar}
+  \label{fig:label-gambar}
+\end{figure}
+```
+
+#### d. **Kode Program**
+Simpan file kode di `core/program/` dan sisipkan dalam dokumen:
+
+```tex
+\lstinputlisting[language=Python, caption=Deskripsi kode]{program/nama-file.py}
+```
+
+#### e. **Daftar Pustaka**
+Tambahkan referensi ke `core/pustaka/pustaka.bib` dalam format BibTeX:
+
+```bibtex
+@article{AuthorYear,
+  author  = {Nama Penulis},
+  title   = {Judul Artikel},
+  journal = {Nama Jurnal},
+  year    = {2024},
+  volume  = {10},
+  pages   = {1--10}
+}
+```
+
+Sitasi dalam dokumen menggunakan `\parencite{AuthorYear}` atau `\textcite{AuthorYear}`.
+
+#### f. **Halaman Tambahan**
+Edit file di `core/lainnya/`:
+- `lembar-pengesahan.tex` / `lembar-pengesahan-en.tex` — Lembar pengesahan
+- `kata-pengantar.tex` — Kata pengantar
+- `biografi-penulis.tex` — Biografi penulis
+- `pernyataan-keaslian.tex` / `pernyataan-keaslian-en.tex` — Pernyataan keaslian
+
+> 💡 **Tip**: Setiap file dilengkapi dengan comment yang menjelaskan cara penggunaan dan kustomisasi.
+
+---
+
+## Kompilasi Dokumen
+
+### Metode 1: Menggunakan `pdflatex`
+
+Navigasi ke folder varian yang diinginkan, kemudian jalankan perintah berikut:
+
+```bash
+# Masuk ke folder varian, contoh: proposal Bahasa Indonesia
+cd variants/proposal-id/
+
+# Kompilasi dokumen (jalankan beberapa kali untuk referensi silang)
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+```
+
+**Penjelasan:**
+1. `pdflatex main.tex` — Kompilasi pertama untuk membuat struktur dokumen
+2. `biber main` — Memproses daftar pustaka
+3. `pdflatex main.tex` — Kompilasi kedua untuk menyisipkan referensi
+4. `pdflatex main.tex` — Kompilasi ketiga untuk finalisasi
+
+### Metode 2: Menggunakan `latexmk` 
+
+`latexmk` akan otomatis menjalankan kompilasi berulang hingga semua referensi terselesaikan:
+
+```bash
+cd variants/proposal-id/
+latexmk -pdf main.tex
+```
+
+Untuk mengaktifkan mode watch (auto-compile saat file berubah):
+
+```bash
+latexmk -pdf -pvc main.tex
+```
+
+### Metode 3: Menggunakan VS Code dengan LaTeX Workshop
+
+1. Install extension **LaTeX Workshop** di VS Code
+2. Buka file `main.tex` dari varian yang diinginkan
+3. Tekan `Ctrl+Alt+B` (Linux/Windows) atau `Cmd+Option+B` (macOS) untuk compile
+4. Atau klik ikon ▶️ di pojok kanan atas editor
+
+### Output Kompilasi
+
+Setelah kompilasi berhasil, akan dihasilkan:
+- **`main.pdf`** — Dokumen akhir (file utama yang Anda butuhkan)
+- `main.aux`, `main.bbl`, `main.blg`, `main.log`, dll. — File auxiliary (dapat diabaikan)
+
+> 💡 **Tip**: Untuk membersihkan file auxiliary, jalankan:
+> ```bash
+> latexmk -c    # Hapus file temporary
+> latexmk -C    # Hapus semua file hasil kompilasi termasuk PDF
+> ```
+
+---
+
+## Varian Template
+
+### Perbedaan Proposal dan Tugas Akhir
+
+| Aspek | Proposal | Tugas Akhir (TA) |
+|-------|----------|------------------|
+| **Bab yang Disertakan** | Bab 1-3 (Pendahuluan, Tinjauan Pustaka, Metodologi) | Bab 1-5 (Semua bab termasuk Hasil dan Penutup) |
+| **Lembar Pengesahan** | Lembar pengesahan proposal | Lembar pengesahan TA lengkap |
+| **Halaman Tambahan** | Minimal (hanya yang diperlukan untuk proposal) | Lengkap (kata pengantar, biografi, dll.) |
+
+### Perbedaan Bahasa Indonesia dan Inggris
+
+- **Bahasa Indonesia (`-id`)**: Menggunakan format dan terminologi Indonesia (BAB, DAFTAR PUSTAKA, dll.)
+- **Bahasa Inggris (`-en`)**: Menggunakan format dan terminologi Inggris (CHAPTER, REFERENCES, dll.)
+
+---
+
+## Troubleshooting
+
+### Error: `! LaTeX Error: File 'xxx.sty' not found`
+
+**Solusi**: Package LaTeX belum terinstal. Jalankan:
+
+```bash
+# Ubuntu/Debian
+sudo apt install texlive-latex-extra texlive-fonts-extra
+
+# Arch Linux
+sudo pacman -S texlive-latexextra
+
+# MiKTeX (Windows) - akan otomatis mengunduh package yang hilang
+```
+
+### Error: `! Package biblatex Error: '\biber' not found`
+
+**Solusi**: Install biber untuk memproses bibliografi:
+
+```bash
+# Ubuntu/Debian
+sudo apt install biber
+
+# Arch Linux
+sudo pacman -S biber
+
+# macOS
+brew install biber
+```
+
+### Referensi/Citation Tidak Muncul
+
+**Solusi**: Pastikan menjalankan kompilasi lengkap:
+
+```bash
+pdflatex main.tex
+biber main
+pdflatex main.tex
+pdflatex main.tex
+```
+
+Atau gunakan `latexmk -pdf main.tex` yang otomatis menangani ini.
+
+### Gambar Tidak Muncul
+
+**Penyebab umum:**
+1. Path file gambar salah → Pastikan file ada di `core/gambar/`
+2. Format gambar tidak didukung → Gunakan `.png`, `.jpg`, atau `.pdf`
+3. Package `graphicx` belum dimuat → Sudah included di template
+
+### Error: Font Tidak Ditemukan
+
+**Solusi**: Install font Times New Roman atau gunakan `txfonts` (sudah included):
+
+```bash
+# Ubuntu/Debian
+sudo apt install texlive-fonts-recommended texlive-fonts-extra
+
+# Arch Linux
+sudo pacman -S texlive-fontsrecommended
+```
+
+---
 
 
 ## Lisensi
 
-Kode sumber yang ada pada repositori ini dilisensikan di bawah [lisensi MIT](./LICENSE) dengan kredit penuh kepada B201 Telematics Laboratory untuk template dasar.
+Kode sumber yang ada pada repositori ini dilisensikan di bawah [Lisensi MIT](./LICENSE) dengan kredit penuh kepada **B201 Telematics Laboratory** untuk template dasar.
