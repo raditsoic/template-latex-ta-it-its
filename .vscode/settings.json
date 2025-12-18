@@ -1,0 +1,30 @@
+{
+    "latex-workshop.latex.rootFile.useSubFile": false,
+    "latex-workshop.latex.search.rootFiles.include": [
+        "**/*.tex"
+    ],
+    "latex-workshop.latex.rootFile.doNotPrompt": false,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-shell-escape",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-synctex=1",
+                "-output-directory=%OUTDIR%",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex",
+            "tools": [
+                "pdflatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.outDir": "%DIR%"
+}
