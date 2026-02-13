@@ -1,6 +1,6 @@
 # Template LaTeX Tugas Akhir – Departemen Teknologi Informasi ITS
 
-Template ini merupakan adaptasi dari template LaTeX resmi tugas akhir ITS yang dikembangkan oleh **B201 Telematics Laboratory** (repositori asli: `b201lab/template-buku-ta-its`). Versi ini telah disesuaikan untuk kebutuhan Departemen Teknologi Informasi ITS, dengan penyesuaian struktur, berkas, serta penambahan beberapa varian template (proposal & laporan akhir, Bahasa Indonesia & Bahasa Inggris).
+Template ini merupakan adaptasi dari template LaTeX resmi tugas akhir ITS yang dikembangkan oleh **B201 Telematics Laboratory** (repositori asli: `b201lab/template-buku-ta-its`). Versi ini telah disesuaikan untuk kebutuhan Departemen Teknologi Informasi ITS, dengan penyesuaian struktur, berkas, serta penambahan struktur untuk Proposal dan Buku Tugas Akhir.
 
 ---
 
@@ -13,6 +13,7 @@ Template ini merupakan adaptasi dari template LaTeX resmi tugas akhir ITS yang d
 - [Varian Template](#varian-template)
 - [Troubleshooting](#troubleshooting)
 - [Kontribusi](#kontribusi)
+- [Issue & Feature Request](#issue--feature-request)
 - [Lisensi](#lisensi)
 
 ---
@@ -25,6 +26,8 @@ Repositori ini menggunakan pendekatan **core + variants**, sehingga bagian yang 
 /
 ├── LICENSE
 ├── README.md
+├── .vscode/              # Konfigurasi VS Code (LaTeX Workshop)
+│   └── settings.json
 ├── core/                 # Komponen inti yang dibagikan ke semua varian
 │   ├── abstrak/          # Abstrak Bahasa Indonesia dan Inggris
 │   ├── chapter/          # Bab-bab tugas akhir
@@ -34,10 +37,8 @@ Repositori ini menggunakan pendekatan **core + variants**, sehingga bagian yang 
 │   ├── pustaka/          # Daftar pustaka dan variabel konfigurasi
 │   └── sampul/           # Template sampul dalam dan luar
 └── variants/             # Varian template untuk berbagai kebutuhan
-    ├── proposal-id/      # Proposal Tugas Akhir (Bahasa Indonesia)
-    ├── proposal-en/      # Proposal Tugas Akhir (Bahasa Inggris)
-    ├── ta-id/            # Laporan Akhir (Bahasa Indonesia)
-    └── ta-en/            # Laporan Akhir (Bahasa Inggris)
+    ├── buku-ta/          # Buku Tugas Akhir (Laporan Akhir lengkap)
+    └── proposal/          # Proposal Tugas Akhir
 ```
 
 ### Penjelasan Folder `core/`
@@ -47,19 +48,17 @@ Repositori ini menggunakan pendekatan **core + variants**, sehingga bagian yang 
 | **`abstrak/`** | Berisi file `*.tex` untuk abstrak dalam Bahasa Indonesia (`abstrak-id.tex`) dan Bahasa Inggris (`abstrak-en.tex`) |
 | **`chapter/`** | Berisi file `*.tex` dari setiap bab (1-pendahuluan.tex, 2-tinjauan-pustaka.tex, dll.) |
 | **`gambar/`** | Direktori untuk menyimpan file gambar (`*.jpg`, `*.png`, `*.pdf`, dll.) yang akan digunakan dalam dokumen |
-| **`lainnya/`** | Halaman tambahan seperti lembar pengesahan, kata pengantar, pernyataan keaslian, biografi penulis |
+| **`lainnya/`** | Halaman tambahan seperti lembar pengesahan (TA & proposal), kata pengantar, pernyataan keaslian, biografi penulis |
 | **`program/`** | File kode program yang akan disisipkan ke dalam dokumen menggunakan package listings |
 | **`pustaka/`** | Berisi `pustaka.bib` (daftar referensi) dan `variables.tex` (konfigurasi metadata) |
-| **`sampul/`** | Template sampul luar dan dalam untuk buku tugas akhir |
+| **`sampul/`** | Template sampul luar, dalam, dan tipis beserta konten cover (Bahasa Indonesia & Inggris) |
 
 ### Penjelasan Folder `variants/`
 
 Setiap varian memiliki file `main.tex` sendiri yang mengatur struktur dokumen sesuai kebutuhan:
 
-- **`proposal-id/`** — Proposal Tugas Akhir dalam Bahasa Indonesia
-- **`proposal-en/`** — Proposal Tugas Akhir dalam Bahasa Inggris  
-- **`ta-id/`** — Buku Tugas Akhir (Laporan Akhir) dalam Bahasa Indonesia
-- **`ta-en/`** — Buku Tugas Akhir (Laporan Akhir) dalam Bahasa Inggris
+- **`buku-ta/`** — Buku Tugas Akhir (Laporan Akhir lengkap dengan Bab 1-5)
+- **`proposal/`** — Proposal Tugas Akhir (hanya Bab 1-3: Pendahuluan, Tinjauan Pustaka, Metodologi)
 
 ---
 
@@ -104,10 +103,8 @@ sudo apt install \
 
 Pilih varian yang sesuai dengan kebutuhan Anda:
 
-- **`variants/proposal-id/`** — Untuk proposal tugas akhir dalam Bahasa Indonesia
-- **`variants/proposal-en/`** — Untuk proposal tugas akhir dalam Bahasa Inggris
-- **`variants/ta-id/`** — Untuk laporan akhir dalam Bahasa Indonesia
-- **`variants/ta-en/`** — Untuk laporan akhir dalam Bahasa Inggris
+- **`variants/buku-ta/`** — Untuk buku tugas akhir (laporan akhir lengkap)
+- **`variants/proposal/`** — Untuk proposal tugas akhir
 
 ### 2. Konfigurasi Metadata Dokumen
 
@@ -141,9 +138,9 @@ Edit file di `core/abstrak/`:
 Edit file di `core/chapter/` sesuai struktur buku:
 - `1-pendahuluan.tex` — Latar belakang, rumusan masalah, tujuan, manfaat
 - `2-tinjauan-pustaka.tex` — Teori dan penelitian terdahulu
-- `3-desain-implementasi.tex` — Metodologi dan implementasi
-- `4-pengujian-analisis.tex` — Hasil pengujian dan analisis
-- `5-penutup.tex` — Kesimpulan dan saran
+- `3-metodologi.tex` — Metodologi penelitian
+- `4-hasil-pembahasan.tex` — Hasil dan pembahasan
+- `5-kesimpulan-saran.tex` — Kesimpulan dan saran
 
 #### c. **Gambar**
 Simpan file gambar di `core/gambar/` dan gunakan dalam dokumen:
@@ -182,7 +179,8 @@ Sitasi dalam dokumen menggunakan `\parencite{AuthorYear}` atau `\textcite{Author
 
 #### f. **Halaman Tambahan**
 Edit file di `core/lainnya/`:
-- `lembar-pengesahan.tex` / `lembar-pengesahan-en.tex` — Lembar pengesahan
+- `lembar-pengesahan.tex` / `lembar-pengesahan-en.tex` — Lembar pengesahan TA
+- `lembar-pengesahan-proposal.tex` / `lembar-pengesahan-proposal-en.tex` — Lembar pengesahan proposal
 - `kata-pengantar.tex` — Kata pengantar
 - `biografi-penulis.tex` — Biografi penulis
 - `pernyataan-keaslian.tex` / `pernyataan-keaslian-en.tex` — Pernyataan keaslian
@@ -198,8 +196,8 @@ Edit file di `core/lainnya/`:
 Navigasi ke folder varian yang diinginkan, kemudian jalankan perintah berikut:
 
 ```bash
-# Masuk ke folder varian, contoh: proposal Bahasa Indonesia
-cd variants/proposal-id/
+# Masuk ke folder varian, contoh: proposal
+cd variants/proposal/
 
 # Kompilasi dokumen (jalankan beberapa kali untuk referensi silang)
 pdflatex main.tex
@@ -219,7 +217,7 @@ pdflatex main.tex
 `latexmk` akan otomatis menjalankan kompilasi berulang hingga semua referensi terselesaikan:
 
 ```bash
-cd variants/proposal-id/
+cd variants/proposal/
 latexmk -pdf main.tex
 ```
 
@@ -252,18 +250,14 @@ Setelah kompilasi berhasil, akan dihasilkan:
 
 ## Varian Template
 
-### Perbedaan Proposal dan Tugas Akhir
+### Perbedaan Proposal dan Buku TA
 
-| Aspek | Proposal | Tugas Akhir (TA) |
+| Aspek | Proposal | Buku TA |
 |-------|----------|------------------|
-| **Bab yang Disertakan** | Bab 1-3 (Pendahuluan, Tinjauan Pustaka, Metodologi) | Bab 1-5 (Semua bab termasuk Hasil dan Penutup) |
-| **Lembar Pengesahan** | Lembar pengesahan proposal | Lembar pengesahan TA lengkap |
-| **Halaman Tambahan** | Minimal (hanya yang diperlukan untuk proposal) | Lengkap (kata pengantar, biografi, dll.) |
-
-### Perbedaan Bahasa Indonesia dan Inggris
-
-- **Bahasa Indonesia (`-id`)**: Menggunakan format dan terminologi Indonesia (BAB, DAFTAR PUSTAKA, dll.)
-- **Bahasa Inggris (`-en`)**: Menggunakan format dan terminologi Inggris (CHAPTER, REFERENCES, dll.)
+| **Bab yang Disertakan** | Bab 1-3 (Pendahuluan, Tinjauan Pustaka, Metodologi) | Bab 1-5 (Semua bab termasuk Hasil dan Kesimpulan) |
+| **Lembar Pengesahan** | Lembar pengesahan proposal (Indonesia & Inggris) | Lembar pengesahan TA lengkap (Indonesia & Inggris) |
+| **Halaman Tambahan** | Minimal (hanya yang diperlukan untuk proposal) | Lengkap (kata pengantar, biografi, pernyataan keaslian, dll.) |
+| **Daftar Pustaka** | Ditampilkan di akhir proposal | Ditampilkan di akhir buku |
 
 ---
 
@@ -332,6 +326,36 @@ sudo pacman -S texlive-fontsrecommended
 
 ---
 
+## Kontribusi
+
+Kontribusi dalam bentuk **pull request** sangat diterima. Jika Anda ingin berkontribusi:
+
+1. Fork repositori ini
+2. Buat branch fitur baru (`git checkout -b fitur-baru`)
+3. Commit perubahan Anda (`git commit -m 'Tambah fitur baru'`)
+4. Push ke branch Anda (`git push origin fitur-baru`)
+5. Buka Pull Request
+
+---
+
+## Issue & Feature Request
+
+Jika Anda menemukan **bug** atau memiliki **permintaan fitur**, silakan buka issue di repositori GitHub ini dengan:
+
+### Untuk Bug Report
+- Judul yang jelas dan ringkas
+- Deskripsi detail tentang bug
+- Langkah-langkah untuk mereproduksi bug
+- Screenshot/log error (jika ada)
+- Informasi sistem operasi dan versi LaTeX
+
+### Untuk Feature Request
+- Judul yang menggambarkan fitur yang diminta
+- Deskripsi detail tentang fitur yang diinginkan
+- Alasan/masalah yang ingin diselesaikan dengan fitur tersebut
+- Contoh penggunaan (jika relevan)
+
+---
 
 ## Lisensi
 
