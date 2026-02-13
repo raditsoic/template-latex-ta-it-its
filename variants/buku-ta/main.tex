@@ -102,12 +102,15 @@
 \titlespacing{\subsection}{0ex}{0.5ex}{0ex}
 \titlespacing{\subsubsection}{0ex}{0.5ex}{0ex}
 
+% Pengaturan kedalaman penomoran section (x.x.x.x)
+\setcounter{secnumdepth}{3}
+
 \input{pustaka/variables.tex}
 
 \input{pustaka/tanda-hubung.tex}
 
 % Menambahkan resource daftar pustaka
-\addbibresource{pustaka/pustaka.bib}
+\addbibresource{../../core/pustaka/pustaka.bib}
 
 % Pengaturan format potongan kode
 \usepackage{listings}
@@ -151,8 +154,11 @@
 \setlength{\parskip}{1ex}
 
 % Lembar pengesahan
-\input{lainnya/lembar-pengesahan-proposal-en.tex}
+\input{lainnya/lembar-pengesahan.tex}
 \cleardoublepage
+
+\input{lainnya/lembar-pengesahan-en.tex}
+\clearpage
 
 % Halaman Pernyataan Orisinalitas
 \input{lainnya/pernyataan-keaslian.tex}
@@ -201,8 +207,16 @@
 \input{chapter/2-tinjauan-pustaka.tex}
 \cleardoublepage
 
-% Bab 3 desain dan implementasi
-\input{chapter/3-desain-implementasi.tex}
+% Bab 3 metodologi
+\input{chapter/3-metodologi.tex}
+\cleardoublepage
+
+% Bab 4 hasil dan pembahasan
+\input{chapter/4-hasil-pembahasan.tex}
+\cleardoublepage
+
+% Bab 5 kesimpulan dan saran
+\input{chapter/5-kesimpulan-saran.tex}
 \cleardoublepage
 
 \chapter*{DAFTAR PUSTAKA}
@@ -214,6 +228,10 @@
 \def\chapter*#1{}
 \printbibliography
 \endgroup
+\cleardoublepage
+
+% Biografi penulis
+\input{lainnya/biografi-penulis.tex}
 \cleardoublepage
 
 \end{document}
