@@ -1,0 +1,52 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "C:\\Users\\<YOUR_USERNAME>\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\pdflatex.exe",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatex",
+            "command": "C:\\Users\\<YOUR_USERNAME>\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\xelatex.exe",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "biber",
+            "command": "C:\\Users\\<YOUR_USERNAME>\\AppData\\Local\\Programs\\MiKTeX\\miktex\\bin\\x64\\biber.exe",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "⚡ Quick Build (xelatex × 1)",
+            "tools": ["xelatex"]
+        },
+        {
+            "name": "📚 Full Build (xelatex → biber → xelatex × 2)",
+            "tools": ["xelatex", "biber", "xelatex", "xelatex"]
+        },
+        {
+            "name": "pdflatex Quick",
+            "tools": ["pdflatex"]
+        },
+        {
+            "name": "pdflatex Full (pdflatex → biber → pdflatex × 2)",
+            "tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
+        }
+    ]
+}

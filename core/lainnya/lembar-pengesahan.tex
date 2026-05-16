@@ -1,10 +1,21 @@
+% Atur numbering halaman ke Roman dan mulai dari i
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% Atur spacing untuk konten lembar pengesahan
+\setlength{\parskip}{8pt}
+
+% Macro untuk baris examiner/advisor (mengurangi redundansi)
+\newcommand{\examrow}[3]{#1 & #2 \\ NIP: #3 & \\ & ................................... \\ & \\ & \\}
+
+% Macro untuk baris dengan spacing (menghilangkan vspace repetitif)
+\newcommand{\spline}[1]{\vspace{6pt} \\ #1}
+
 \begin{center}
-  \large
+  \fontsize{14}{16.8}\selectfont
   \textbf{LEMBAR PENGESAHAN}
 \end{center}
-
-% Menyembunyikan nomor halaman
-\thispagestyle{empty}
+\vspace{10pt}
 
 \begin{center}
   \textbf{\tatitle{}}
@@ -15,22 +26,19 @@
 \small
 
 \begin{center}
-  \textbf{TUGAS AKHIR}
-  \\Diajukan untuk memenuhi salah satu syarat \\
-  memperoleh gelar Sarjana Teknik pada \\
-  Program Studi S-1 \studyprogram{} \\
-  Departemen \department{} \\
-  Fakultas \faculty{} \\
-  Institut Teknologi Sepuluh Nopember
+  \vspace{6pt}
+  \textbf{TUGAS AKHIR} \\
+  \vspace{6pt}
+  Diajukan untuk memenuhi salah satu syarat \spline{memperoleh gelar Sarjana Komputer pada} \spline{Program Studi S-1 \studyprogram{}} \spline{Departemen \department{}} \spline{Fakultas \faculty{}} \spline{Institut Teknologi Sepuluh Nopember}
 \end{center}
 
 \begin{center}
-  Oleh: \textbf{\name{}}
-  \\NRP. \nrp{}
+  Oleh: \textbf{\name{}} \\[6pt]
+   NRP. \nrp{}
 \end{center}
 
 \begin{center}
-  Disetujui oleh Tim Penguji Tugas Akhir:
+  Disetujui oleh Tim Penguji Tugas Akhir: 
 \end{center}
 
 \begingroup
@@ -39,43 +47,17 @@
 
 \noindent
 \begin{tabularx}{\textwidth}{X l}
-  \advisor{}               & (Pembimbing I)                      \\
-  NIP: \advisornip{}       &                                     \\
-                           & ................................... \\
-                           &                                     \\
-                           &                                     \\
-  \coadvisor{}             & (Pembimbing II)                     \\
-  NIP: \coadvisornip{}     &                                     \\
-                           & ................................... \\
-                           &                                     \\
-                           &                                     \\
-  \examinerone{}.          & (Penguji I)                         \\
-  NIP: \examineronenip{}   &                                     \\
-                           & ................................... \\
-                           &                                     \\
-                           &                                     \\
-  \examinertwo{}.          & (Penguji II)                        \\
-  NIP: \examinertwonip{}   &                                     \\
-                           & ................................... \\
-                           &                                     \\
-                           &                                     \\
-  \examinerthree{}.        & (Penguji III)                       \\
-  NIP: \examinerthreenip{} &                                     \\
-                           & ................................... \\
+  \examrow{\advisor{}}{\text{(Pembimbing I)}}{\advisornip{}}
+  \examrow{\coadvisor{}}{\text{(Pembimbing II)}}{\coadvisornip{}}
+  \examrow{\examinerone{}.}{\text{(Penguji I)}}{\examineronenip{}}
+  \examrow{\examinertwo{}.}{\text{(Penguji II)}}{\examinertwonip{}}
+  % \examrow{\examinerthree{}.}{\text{(Penguji III)}}{\examinerthreenip{}}
 \end{tabularx}
 \endgroup
 
 \begin{center}
-  Mengetahui, \\
-  Kepala Departemen \department{} \facultyshort{} - ITS\\
-
-  \vspace{8ex}
-
-  \underline{\headofdepartment{}.} \\
-  NIP. \headofdepartmentnip{}
-\end{center}
-
-\begin{center}
-  \textbf{\MakeUppercase{\place{}}\\\MONTH{}, \the\year{}}
+  \textbf{\MakeUppercase{\place{}}} \\
+  \textbf{\MONTH{}}, \textbf{\the\year{}}
 \end{center}
 \endgroup
+
