@@ -214,33 +214,42 @@ Pilih varian yang sesuai dengan kebutuhan Kamu:
 
 ### 2. Konfigurasi Template (Format Halaman)
 
-Format halaman sudah dikonfigurasi sesuai **panduan institusi ITS**. Untuk mengubah format, edit file `main.tex` di varian yang digunakan:
+Template sudah dikonfigurasi dengan **twoside (double-sided printing)** sesuai **panduan institusi ITS**:
 
 **Panduan Resmi ITS:**
 > Buku TA dicetak bolak-balik (untuk menghemat kertas), namun pastikan awal bab ada di halaman gasal.
 > Buku TA cukup diberi klip.
 
-**Mengubah Format Halaman:**
+**Format Saat Ini:**
 
-Edit bagian awal file `variants/buku-ta/main.tex` atau `variants/proposal/main.tex`:
+Kedua varian template (`buku-ta/` dan `proposal/`) menggunakan twoside dengan konfigurasi:
 
 ```tex
-% Define page format (must be before \documentclass)
-% Options: oneside (single-sided) or twoside (double-sided, per ITS guideline)
-\def\pageformat{twoside}    % ← Ubah 'twoside' menjadi 'oneside' jika perlu
+\documentclass[12pt,twoside]{report}
+\usepackage[a4paper,top=30mm,inner=30mm,outer=20mm,bottom=25mm,twoside]{geometry}
 ```
 
-**Penjelasan Format:**
+**Karakteristik twoside:**
+- ✅ Cetak dua sisi dengan margin bergantian (inner=binding side, outer=free side)
+- ✅ Halaman kosong ditambahkan otomatis agar chapter dimulai di halaman gasal (kanan)
+- ✅ Page numbering bergantian (genap di kiri, ganjil di kanan)
+- ✅ Cukup diberi klip (tidak perlu binding mahal)
 
-| Format | Kegunaan | Karakteristik |
-|--------|----------|---------------|
-| **`twoside`** | Buku TA final (default) | Cetak dua sisi, halaman kosong ditambahkan otomatis agar chapter dimulai di halaman kanan ✅ |
-| **`oneside`** | Proposal atau draft internal | Cetak satu sisi, lebih simple untuk dokumen sementara |
+**Mengubah ke Oneside:**
 
-**Catatan penting untuk twoside:**
-- Halaman kosong yang otomatis ditambahkan LaTeX **bukan error**, tapi **intentional** sesuai guideline
-- Hasil akhir: awal setiap bab pasti di halaman gasal (kanan) ✅
-- Cukup diberi klip (tidak perlu binding mahal) ✅
+Jika ingin mengubah ke format single-sided, edit file `variants/buku-ta/main.tex` atau `variants/proposal/main.tex`:
+
+```tex
+% Ubah dari:
+\documentclass[12pt,twoside]{report}
+% Menjadi:
+\documentclass[12pt,oneside]{report}
+
+% Dan ubah geometry dari:
+\usepackage[a4paper,top=30mm,inner=30mm,outer=20mm,bottom=25mm,twoside]{geometry}
+% Menjadi:
+\usepackage[a4paper,top=30mm,left=30mm,right=20mm,bottom=25mm]{geometry}
+```
 
 ### 3. Konfigurasi Metadata Dokumen
 

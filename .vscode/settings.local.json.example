@@ -7,7 +7,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "%DOC%"
+                "%DOCFILE%"
             ],
             "env": {}
         },
@@ -18,7 +18,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "%DOC%"
+                "%DOCFILE%"
             ],
             "env": {}
         },
