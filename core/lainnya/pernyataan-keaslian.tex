@@ -1,10 +1,11 @@
+% Atur numbering halaman ke Roman dan mulai dari i
+\pagenumbering{roman}
+\setcounter{page}{3}
+
 \begin{center}
   \large
   \textbf{PERNYATAAN ORISINALITAS}
 \end{center}
-
-% Menyembunyikan nomor halaman
-\thispagestyle{empty}
 
 \vspace{2ex}
 
@@ -12,30 +13,33 @@
 
 \noindent Yang bertanda tangan dibawah ini:
 
-\noindent\begin{tabularx}{\textwidth}{l l X}
-                         &   &                            \\
-  Nama Mahasiswa / NRP   & : & \name{} / \nrp{}           \\
-  Departemen             & : & \department{}              \\
-  Dosen Pembimbing / NIP & : & \advisor{} / \advisornip{} \\
-                         &   &                            \\
+% hilangkan extra padding kiri
+\noindent\begin{tabularx}{\textwidth}{@{}l l X@{}}
+                       &   &                            \\
+Nama Mahasiswa / NRP   & : & \nickname{} / \nrp{}           \\[6pt]
+Departemen             & : & \department{}              \\[6pt]
+Dosen Pembimbing 1 / NIP & : & \advisor{} / \advisornip{} \\[6pt]
+Dosen Pembimbing 2 / NIP & : & \coadvisor{} / \coadvisornip{} \\
+                       &   &                            \\
 \end{tabularx}
 
-Dengan ini menyatakan bahwa Tugas Akhir dengan judul "\tatitle{}" adalah hasil karya sendiri, berfsifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.
+\begin{sloppypar}
+Dengan ini menyatakan bahwa Tugas Akhir dengan judul ``\tatitle{}'' adalah hasil karya sendiri, bersifat orisinal, dan ditulis dengan mengikuti kaidah penulisan ilmiah.
+\end{sloppypar}
 
 Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka saya bersedia menerima sanksi sesuai dengan ketentuan yang berlaku di Institut Teknologi Sepuluh Nopember.
 
 \vspace{8ex}
 
-\noindent\begin{tabularx}{\textwidth}{X l}
-                     & \place{}, \ENGMONTH{} \the\year{} \\
-                     &                                   \\
-  Mengetahui         &                                   \\
-  Dosen Pembimbing   & Mahasiswa                         \\
-                     &                                   \\
-                     &                                   \\
-                     &                                   \\
-                     &                                   \\
-                     &                                   \\
-  \advisor{}         & \name{}                           \\
-  NIP. \advisornip{} & NRP. \nrp{}                       \\
+\noindent\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}X>{\raggedright\arraybackslash}p{0.28\textwidth}X>{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
+  & & & & \place{}, \MONTH{} \the\year{}               \\[6pt]
+  Mengetahui,          & & & &            \\[6pt]
+  Dosen Pembimbing 1   & & Dosen Pembimbing 2 & & Mahasiswa  \\
+                       & & & &            \\
+                       & & & &            \\
+                       & & & &            \\
+                       & & & &            \\
+                       & & & &            \\
+  \advisor{}           & & \coadvisor{}       & & \nickname{}    \\[20pt]
+  NIP. \advisornip{}   & & NIP. \coadvisornip{} & & NRP. \nrp{} \\
 \end{tabularx}

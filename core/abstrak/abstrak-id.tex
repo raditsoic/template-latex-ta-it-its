@@ -1,6 +1,10 @@
+% Atur numbering halaman ke Roman dan mulai dari i
+\pagenumbering{roman}
+\setcounter{page}{5}
+
 \begin{center}
-  \large\textbf{ABSTRAK}\\[2ex]
-  \large\textbf{\tatitle{}}
+  {\fontsize{14}{16.8}\selectfont\textbf{ABSTRAK}}\\[6ex]
+  {\fontsize{12}{14.4}\selectfont\textbf{\tatitle{}}} \\[4ex]
 \end{center}
 
 \addcontentsline{toc}{chapter}{ABSTRAK}
@@ -13,17 +17,20 @@
 
 \noindent
 \begin{tabularx}{\textwidth}{l >{\centering}m{2em} X}
-  Nama Mahasiswa / NRP   & : & \name{} / \nrp        \\
-
-  Department & : & \department{} - Fakultas \faculty      \\
-
-  Dosen Pembimbing        & : & 1. \advisor{}   \\
-                    &   & 2. \coadvisor{} \\
+  \textbf{Nama Mahasiswa / NRP}   & \textbf{:} & \textbf{\nickname{} / \nrp}        \\[6pt]
+  \textbf{Departemen}             & \textbf{:} & \textbf{\department{} - Fakultas \faculty}      \\[20pt]
+  \textbf{Dosen Pembimbing}       & \textbf{:} & \textbf{1. \advisor{}}   \\
+                    &   & \textbf{2. \coadvisor{}} \\
 \end{tabularx}
 \endgroup
+
+\noindent
+\textbf{Abstrak}
 
 % Ubah paragraf berikut dengan abstrak dari tugas akhir
 Pada penelitian ini kami mengajukan \lipsum[1]
 
 % Ubah kata-kata berikut dengan kata kunci dari tugas akhir
+\vspace{2ex}
+\noindent
 \textbf{Kata Kunci: \keywords{}}

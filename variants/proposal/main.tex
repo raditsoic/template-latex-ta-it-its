@@ -2,36 +2,36 @@
 \def\input@path{{../../core/}}
 \makeatother
 
+% Pengaturan ukuran teks dan bentuk halaman
+\documentclass[12pt,twoside]{report}
+
 % Judul dokumen
 \title{Buku Tugas Akhir ITS}
 \author{Musk, Elon Reeve}
 
-% Pengaturan ukuran teks dan bentuk halaman dua sisi
-\documentclass[12pt,twoside]{report}
-
 % Pengaturan ukuran halaman dan margin
-\usepackage[a4paper,top=30mm,left=30mm,right=20mm,bottom=25mm]{geometry}
+% Untuk twoside: inner (binding side) = 20mm, outer (free side) = 20mm
+\usepackage[a4paper,top=10mm,inner=20mm,outer=20mm,bottom=20mm,twoside]{geometry}
 
 % Pengaturan ukuran spasi
 \usepackage[singlespacing]{setspace}
 
 % Pengaturan detail pada file PDF
-\usepackage[pdfauthor={\@author},bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
-
-% Pengaturan jenis karakter
-\usepackage[utf8]{inputenc}
+\usepackage[bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
+\hypersetup{pdftitle={Buku Tugas Akhir ITS}, pdfauthor={Musk, Elon Reeve}}
 
 % Pengaturan pewarnaan
 \usepackage[table,xcdraw]{xcolor}
 
 % Pengaturan kutipan artikel
 \usepackage[style=apa, backend=biber]{biblatex}
+\PassOptionsToPackage{hyphens}{url}
 
 % Package lainnya
 \usepackage{changepage}
 \usepackage{enumitem}
 \usepackage{eso-pic}
-\usepackage{times} 
+\usepackage{fontspec}
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{lipsum}
@@ -114,7 +114,6 @@
 
 % Pengaturan format potongan kode
 \usepackage{listings}
-\usepackage[T1]{fontenc} % Fix for quote character encoding
 \definecolor{comment}{RGB}{0,128,0}
 \definecolor{string}{RGB}{255,0,0}
 \definecolor{keyword}{RGB}{0,0,255}
@@ -141,6 +140,7 @@
 
 % Sampul dalam Bahasa Inggris
 \newcommand\covercontents{sampul/konten-id.tex}
+\newcommand\coverleftmargin{30mm}
 \input{sampul/sampul-luar-tipis.tex}
 
 % Label tabel dan gambar dalam bahasa indonesia

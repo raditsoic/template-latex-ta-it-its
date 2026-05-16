@@ -2,36 +2,36 @@
 \def\input@path{{../../core/}}
 \makeatother
 
+% Pengaturan ukuran teks
+\documentclass[12pt,twoside]{report}
+
 % Judul dokumen
 \title{Buku Tugas Akhir ITS}
 \author{Musk, Elon Reeve}
 
-% Pengaturan ukuran teks dan bentuk halaman dua sisi
-\documentclass[12pt,twoside]{report}
-
 % Pengaturan ukuran halaman dan margin
-\usepackage[a4paper,top=30mm,left=30mm,right=20mm,bottom=25mm]{geometry}
+% Untuk twoside: inner (binding side) = 30mm, outer (free side) = 20mm
+\usepackage[a4paper,top=30mm,inner=30mm,outer=20mm,bottom=25mm,twoside]{geometry}
 
 % Pengaturan ukuran spasi
 \usepackage[singlespacing]{setspace}
 
 % Pengaturan detail pada file PDF
-\usepackage[pdfauthor={\@author},bookmarksnumbered,pdfborder={0 0 0}]{hyperref}
-
-% Pengaturan jenis karakter
-\usepackage[utf8]{inputenc}
+\usepackage[bookmarksnumbered,pdfborder={0 0 0},hidelinks]{hyperref}
+\hypersetup{pdftitle={Buku Tugas Akhir ITS}, pdfauthor={Musk, Elon Reeve}}
 
 % Pengaturan pewarnaan
 \usepackage[table,xcdraw]{xcolor}
 
 % Pengaturan kutipan artikel
 \usepackage[style=apa, backend=biber]{biblatex}
+\PassOptionsToPackage{hyphens}{url}
 
 % Package lainnya
 \usepackage{changepage}
 \usepackage{enumitem}
 \usepackage{eso-pic}
-\usepackage{times} 
+\usepackage{fontspec}
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{lipsum}
@@ -42,6 +42,39 @@
 \usepackage{algorithmic}
 \usepackage{amsmath} % For enhanced math mode including \text command
 \usepackage{amssymb} % For additional math symbols
+\usepackage{titletoc} % Format daftar isi
+
+% Sembunyikan subsection dari daftar isi
+\setcounter{tocdepth}{1}
+
+% Setup format daftar isi
+\titlecontents{chapter}[0pt]
+  {\fontsize{11}{13}\selectfont\rmfamily\mdseries}
+  {BAB \thecontentslabel\hspace{1em}}
+  {}
+  {\hfill\contentspage}
+  [\vspace{0pt}]
+
+\titlecontents{section}[1.5em]
+  {\fontsize{12}{14.4}\selectfont\rmfamily\mdseries}
+  {\thecontentslabel\hspace{1em}}
+  {}
+  {\hfill\contentspage}
+  [\vspace{0pt}]
+
+\titlecontents{figure}[0pt]
+  {\fontsize{11}{13}\selectfont\rmfamily\mdseries}
+  {Gambar \thecontentslabel\hspace{1em}}
+  {}
+  {\hfill\contentspage}
+  [\vspace{0pt}]
+
+\titlecontents{table}[0pt]
+  {\fontsize{11}{13}\selectfont\rmfamily\mdseries}
+  {Tabel \thecontentslabel\hspace{1em}}
+  {}
+  {\hfill\contentspage}
+  [\vspace{0pt}]
 
 % Definisi untuk "Hati ini sengaja dikosongkan"
 \patchcmd{\cleardoublepage}{\hbox{}}{
@@ -93,14 +126,18 @@
 
 % Pengaturan format judul chapter
 \usepackage{titlesec}
-\titleformat{\chapter}[hang]{\bfseries\Large\centering}{BAB \Roman{chapter}}{1ex}{\centering}
-\titleformat{\section}{\bfseries\large}{\MakeUppercase{\thesection}}{1ex}{\vspace{1ex}}
-\titleformat{\subsection}{\bfseries\large}{\MakeUppercase{\thesubsection}}{1ex}{}
-\titleformat{\subsubsection}{\bfseries\large}{\MakeUppercase{\thesubsubsection}}{1ex}{}
-\titlespacing{\chapter}{0ex}{0ex}{4ex}
-\titlespacing{\section}{0ex}{1ex}{0ex}
-\titlespacing{\subsection}{0ex}{0.5ex}{0ex}
-\titlespacing{\subsubsection}{0ex}{0.5ex}{0ex}
+% Chapter (BAB): 14pt, bold, center | spacing before=0.21cm, after=0.64cm
+\titleformat{\chapter}[hang]{\bfseries\fontsize{14}{16.8}\selectfont\centering}{BAB \arabic{chapter}}{1ex}{\centering}
+% Section (Judul2): 13pt, bold, underline, left
+\titleformat{\section}{\bfseries\fontsize{13}{15.6}\selectfont}{\thesection}{1em}{}
+% Subsection (Judul3): 12pt, bold | spacing before=0.07cm, after=0cm
+\titleformat{\subsection}{\bfseries\fontsize{12}{14.4}\selectfont}{\MakeUppercase{\thesubsection}}{1ex}{}
+% Subsubsection (Judul4): 12pt, bold | spacing before=0.07cm, after=0cm
+\titleformat{\subsubsection}{\bfseries\fontsize{12}{14.4}\selectfont}{\MakeUppercase{\thesubsubsection}}{1ex}{}
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titlespacing{\section}{0pt}{12pt}{3pt}
+\titlespacing{\subsection}{0pt}{6pt}{2pt}
+\titlespacing{\subsubsection}{0pt}{6pt}{2pt}
 
 % Pengaturan kedalaman penomoran section (x.x.x.x)
 \setcounter{secnumdepth}{3}
@@ -114,7 +151,6 @@
 
 % Pengaturan format potongan kode
 \usepackage{listings}
-\usepackage[T1]{fontenc} % Fix for quote character encoding
 \definecolor{comment}{RGB}{0,128,0}
 \definecolor{string}{RGB}{255,0,0}
 \definecolor{keyword}{RGB}{0,0,255}
@@ -126,6 +162,7 @@
   numbers=left,
   numberstyle=\tiny,
   numbersep=5pt,
+  xleftmargin=1em,
   frame=lines,
   breaklines=true,
   prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
@@ -139,8 +176,24 @@
 % Isi keseluruhan dokumen
 \begin{document}
 
-% Sampul dalam Bahasa Inggris
+% Sampul Luar (Bahasa Indonesia)
 \newcommand\covercontents{sampul/konten-id.tex}
+\newcommand\coverleftmargin{30mm}
+\input{sampul/sampul-luar.tex}
+
+% Sampul Luar (Bahasa Inggris)
+\renewcommand\covercontents{sampul/konten-en.tex}
+\renewcommand\coverleftmargin{20mm}
+\input{sampul/sampul-luar.tex}
+
+% Sampul Luar Tipis (Bahasa Indonesia)
+\renewcommand\covercontents{sampul/konten-id.tex}
+\renewcommand\coverleftmargin{30mm}
+\input{sampul/sampul-luar-tipis.tex}
+
+% Sampul Luar Tipis (Bahasa Inggris)
+\renewcommand\covercontents{sampul/konten-en.tex}
+\renewcommand\coverleftmargin{20mm}
 \input{sampul/sampul-luar-tipis.tex}
 
 % Label tabel dan gambar dalam bahasa indonesia
@@ -148,19 +201,21 @@
 \renewcommand{\tablename}{Tabel}
 
 % Pengaturan ukuran indentasi paragraf
-\setlength{\parindent}{2em}
+\setlength{\parindent}{0.7cm}
 
 % Pengaturan ukuran spasi paragraf
 \setlength{\parskip}{1ex}
 
 % Lembar pengesahan
+\addcontentsline{toc}{chapter}{LEMBAR PENGESAHAN}
 \input{lainnya/lembar-pengesahan.tex}
-\cleardoublepage
+% \cleardoublepage
 
 \input{lainnya/lembar-pengesahan-en.tex}
 \clearpage
 
 % Halaman Pernyataan Orisinalitas
+\addcontentsline{toc}{chapter}{PERNYATAAN ORISINALITAS}
 \input{lainnya/pernyataan-keaslian.tex}
 \clearpage
 
@@ -179,25 +234,51 @@
 \clearpage
 
 % Daftar isi
-\renewcommand*\contentsname{DAFTAR ISI}
-\addcontentsline{toc}{chapter}{\contentsname}
-\tableofcontents
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\begin{center}
+  {\fontsize{14}{14.4}\selectfont\bfseries DAFTAR ISI}
+\end{center}
+\vspace{2ex}
+\makeatletter
+\@starttoc{toc}
+\makeatother
 \clearpage
 
 % Daftar gambar
-\renewcommand*\listfigurename{DAFTAR GAMBAR}
-\addcontentsline{toc}{chapter}{\listfigurename}
-\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\begin{center}
+  {\fontsize{14}{14.4}\selectfont\bfseries DAFTAR GAMBAR}
+\end{center}
+\begingroup
+\setlength{\parskip}{0pt}
+\vspace{2ex}
+\makeatletter
+\@starttoc{lof}
+\makeatother
+\endgroup
 \clearpage
 
 % Daftar tabel
-\renewcommand*\listtablename{DAFTAR TABEL}
-\addcontentsline{toc}{chapter}{\listtablename}
-\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\begin{center}
+  {\fontsize{14}{14.4}\selectfont\bfseries DAFTAR TABEL}
+\end{center}
+\begingroup
+\vspace{2ex}
+\setlength{\parskip}{0pt}
+\makeatletter
+\@starttoc{lot}
+\makeatother
+\endgroup
 \clearpage
 
 % Nomor halaman isi dimulai dari sini
 \pagenumbering{arabic}
+
+% Margin dan spacing untuk konten bab
+% Untuk twoside: inner (binding side) = 25mm, outer (free side) = 25mm
+\newgeometry{top=20mm,inner=25mm,outer=25mm,bottom=25mm}
+\setlength{\parskip}{8pt}
 
 % Bab 1 pendahuluan
 \input{chapter/1-pendahuluan.tex}
