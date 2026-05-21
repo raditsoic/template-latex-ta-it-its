@@ -139,8 +139,16 @@
 % Isi keseluruhan dokumen
 \begin{document}
 
-% Sampul dalam Bahasa Inggris
+% Sampul luar
 \newcommand\covercontents{sampul/konten-id.tex}
+\input{sampul/sampul-luar.tex}
+
+% Sampul luar tipis Bahasa Indonesia
+\renewcommand\covercontents{sampul/konten-id.tex}
+\input{sampul/sampul-luar-tipis.tex}
+
+% Sampul luar tipis Bahasa Inggris
+\renewcommand\covercontents{sampul/konten-en.tex}
 \input{sampul/sampul-luar-tipis.tex}
 
 % Label tabel dan gambar dalam bahasa indonesia
@@ -158,25 +166,29 @@
 \cleardoublepage
 
 \input{lainnya/lembar-pengesahan-en.tex}
-\clearpage
+\cleardoublepage
 
 % Halaman Pernyataan Orisinalitas
 \input{lainnya/pernyataan-keaslian.tex}
-\clearpage
+\cleardoublepage
 
 \input{lainnya/pernyataan-keaslian-en.tex}
-\clearpage
+\cleardoublepage
 
 % Nomor halaman pembuka dimulai dari sini
 \pagenumbering{roman}
 
 % Abstrak Bahasa Indonesia
 \input{abstrak/abstrak-id.tex}
-\clearpage
+\cleardoublepage
 
 % Abstrak Bahasa Inggris
 \input{abstrak/abstrak-en.tex}
-\clearpage
+\cleardoublepage
+
+% Kata Pengantar
+\input{lainnya/kata-pengantar.tex}
+\cleardoublepage
 
 % Daftar isi
 \renewcommand*\contentsname{DAFTAR ISI}
